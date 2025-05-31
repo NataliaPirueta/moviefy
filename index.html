@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Moviefy</title>
+
+    <!--Preconnect para las fuentes obtenidas de google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <!--Cargar hoja de estilos-->
+    <link rel="stylesheet" href="css/styles.css">
+
 </head>
+
 <body>
-    
+
+    <header>
+
+        <div class="header-container">
+
+            <h1>Moviefy</h1>
+
+            <form class="search-form">
+
+                <input type="text" name="input-movie" id="input-movie" placeholder="Buscar película...">
+                <button class="btn-search"></button>
+
+            </form>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="movies-section">
+
+            <h2>Películas del momento</h2>
+            <!--Carga de películas-->
+            <div class="movies" role="grid">
+
+                <p class="loading-text">Cargando películas...</p>
+
+            </div>
+
+        </section>
+
+        <script src="js/script.js"></script>
+        <script type="module" src="script.js"></script>
+
+    </main>
 </body>
 </html>
