@@ -11,6 +11,8 @@ const moviesContainer = document.querySelector('.movies')
 const searchInput = document.querySelector('#search')
 const searchButton = document.querySelector('#search-btn')
 
+
+//Obtener películas recientes
 const getNowPlayingMovies = async() => {
 
     try {
@@ -32,13 +34,33 @@ const getNowPlayingMovies = async() => {
 
 };
 
+// Obtener película
+const searchMovies = async(query) => {
+    try{
+        const response = await fetch(`${API_CONFIG.baseUrl}/search/movie?query=${encodeURIComponent(query)}&language=es-MX&page=1`, {
+            headers: API_HEADERS
+        });
+
+        if(!response.ok){
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.results;
+    } catch (error){
+        console.log('Error fetching movies: ', error);
+        return[];
+    }
+}
+
+//Renderizar películas
 const renderMovies = (movies) => {
 
     if(!moviesContainer) return;
 
     moviesContainer.innerHTML = movies.map(movie=> `
         
-       <div class=movie-card">
+       <div class="movie-card">
 
             <img src="${API_CONFIG.imgUrl}${movie.poster_path}"
             alt="${movie.title}"
@@ -49,6 +71,8 @@ const renderMovies = (movies) => {
         
     `).join('');
 };
+
+// Acciones
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Verificamos que el token esté configurado
@@ -61,3 +85,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     const movies = await getNowPlayingMovies();
     renderMovies(movies);
 });
+
+
+// Búsqueda por botón
+if(searchButton) {
+
+    searchButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const query = searchInput?.value.trim();
+        if (query){
+            const movies = await searchMovies(query);
+            renderMovies(movies);
+        }
+
+    });
+}
+
+// Búsqueda por Enter
+if(searchInput){
+    searchInput.addEventListener('keypress', async(e) => {
+        if (e.key === 'Enter') {
+            const query = e.target.value.trim();
+            if(query) {
+                const movies = await searchMovies(query);
+                renderMovies(movies);
+            }
+        }
+    });
+}
