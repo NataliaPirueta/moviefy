@@ -101,27 +101,43 @@ if(searchButton) {
     });
 }
 
-// Búsqueda por Enter
-if(searchInput){
-    searchInput.addEventListener('keypress', async(e) => {
-        if (e.key === 'Enter') {
-            const query = e.target.value.trim();
-            if(query) {
-                const movies = await searchMovies(query);
-                renderMovies(movies);
-            }
-        }
-    });
+//Búsqueda por botón
+if(searchButton){
+    searchButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        handleSearch();
+    })
 }
 
-//Manejar el input vacío
-if (searchInput){
-    
-    searchInput.addEventListener('input', async (e) => {
-        const query = e.target.value.trim();
-        if(!query){
-            const movies = await getNowPlayingMovies();
-            renderMovies(movies);
+//Búsqueda al presionar enter
+if(searchInput) {
+    searchInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            handleSearch();
         }
-    });
+    })
+}
+
+// Mostrar películas del momento al borrar el input
+searchInput.addEventListener('input', async () => {
+    const query = searchInput.value.trim();
+    if(!query){
+        const movies = await getNowPlayingMovies();
+        renderMovies(movies);
+    }
+})
+
+//Manejo de la búsqueda
+const handleSearch = async () => {
+    const query = searchInput.value.trim();
+    let movies;
+    if(query) {
+        movies = await searchMovies(query);
+    }
+    else{
+        movies = await getNowPlayingMovies();
+    }
+
+    renderMovies(movies);
 }
