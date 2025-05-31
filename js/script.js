@@ -113,3 +113,15 @@ if(searchInput){
         }
     });
 }
+
+//Manejar el input vacío
+if (searchInput){
+    
+    searchInput.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        if(!query){
+            const movies = await getNowPlayingMovies();
+            renderMovies(movies);
+        }
+    });
+}
