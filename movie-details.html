@@ -24,7 +24,8 @@
         <div class="header-container">
 
             <h1><a href="index.html">Moviefy</a></h1>
-            <button class="back-btn" onclick="history.back">Volver</button>
+            <!-- CORREGIDO: Agregar paréntesis () para ejecutar la función -->
+            <button class="back-btn" onclick="history.back()">Volver</button>
 
         </div>
 
@@ -34,11 +35,13 @@
 
         <section class="movie-details-section">
             
+            <div class="loading-text">Cargando los detalles de la película...</div>
             <div class="movie-details" style="display: none;"></div>
 
         </section>
 
-        <script src="/js/details.js""></script>
+        <!-- CORREGIDO: Eliminar comilla extra y corregir la ruta -->
+        <script src="js/details.js" type="module"></script>
 
     </main>
 
