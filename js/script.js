@@ -6,6 +6,7 @@ const API_HEADERS = {
     'Content-Type': 'application/json'
 };
 
+
 //Selectores DOM
 const moviesContainer = document.querySelector('.movies')
 const searchInput = document.querySelector('#search')
@@ -28,6 +29,7 @@ const getNowPlayingMovies = async() => {
         return data.results;
 
     } catch (error) {
+        alert("Error al obtener las películas: " + error.message);
         console.error('Error fetching movies:', error);
         return [];
     }
@@ -47,7 +49,9 @@ const searchMovies = async(query) => {
 
         const data = await response.json();
         return data.results;
+
     } catch (error){
+        alert("Error al obtener las películas: " + error.message);
         console.log('Error fetching movies: ', error);
         return[];
     }
@@ -77,6 +81,7 @@ const renderMovies = (movies) => {
 document.addEventListener('DOMContentLoaded', async () => {
     // Verificamos que el token esté configurado
     if (!API_CONFIG.token) {
+        alert("API Token no configurado. Revisa el archivo .env" + error.message)
         console.error('API Token no configurado. Revisa tu archivo .env');
         return;
     }
