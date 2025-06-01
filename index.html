@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moviefy</title>
 
+    <link rel="stylesheet" href="css/normalize.css">
+
     <!--Preconnect para las fuentes obtenidas de google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ranchers&display=swap" rel="stylesheet">
 
     <!--Cargar hoja de estilos-->
+    <link rel="preload" href="css/styles.css" as="style">
     <link rel="stylesheet" href="css/styles.css">
+
 
 </head>
 
@@ -39,8 +42,7 @@
     <main>
 
         <section class="movies-section">
-
-            <h2>Películas del momento</h2>
+            
             <!--Carga de películas-->
             <div class="movies" role="grid">
 
