@@ -74,6 +74,7 @@ const renderMovies = (movies) => {
        </div> 
         
     `).join('');
+
 };
 
 // Acciones
