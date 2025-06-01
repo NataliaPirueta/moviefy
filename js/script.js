@@ -64,7 +64,7 @@ const renderMovies = (movies) => {
 
     moviesContainer.innerHTML = movies.map(movie=> `
         
-       <div class="movie-card">
+       <div class="movie-card" data-movie-id="${movie.id}">
 
             <img src="${API_CONFIG.imgUrl}${movie.poster_path}"
             alt="${movie.title}"
@@ -75,10 +75,26 @@ const renderMovies = (movies) => {
         
     `).join('');
 
+    addMovieCardListeners();
+
 };
 
-// Acciones
+//Agregar listeners a las tarjetas
+const addMovieCardListeners = () => {
 
+    const movieCards = document.querySelectorAll('.movie-card');
+
+    movieCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const movieId = card.getAttribute('data-movie-id');
+            if(movieId) {
+                window.location.href = `movie-details.html?id=${movieId}`;
+            }
+        });
+    });
+}
+
+// Acciones
 document.addEventListener('DOMContentLoaded', async () => {
     // Verificamos que el token esté configurado
     if (!API_CONFIG.token) {
@@ -92,20 +108,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderMovies(movies);
 });
 
-
-// Búsqueda por botón
-if(searchButton) {
-
-    searchButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const query = searchInput?.value.trim();
-        if (query){
-            const movies = await searchMovies(query);
-            renderMovies(movies);
-        }
-
-    });
-}
 
 //Búsqueda por botón
 if(searchButton){
