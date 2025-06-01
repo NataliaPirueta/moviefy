@@ -112,7 +112,7 @@ const loadMovieDetails = async () => {
         }
 
     } catch (error) {
-        loadingText.textContent = 'Error al cargar los detalles de la película';
+        alert("Error al cargar los detalles de la película: " + error.message)
         console.error('Error loading movie details:', error);
     }
 };
