@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald&display=swap');
 
-
-/*Genera*/
+/*Generales*/
 :root {
     --background: #1D1D1B;
     --card-background: #2A2A28;
@@ -14,7 +13,6 @@
 
 * {
     font-family: 'Anton', sans-serif;
-
 }
 
 body {
@@ -27,9 +25,12 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 25px;
-    padding: 10px;
+    padding: 12px 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 400; 
+    font-size: 16px;   
+    min-width: 120px;  
 }
 
 h1 {
@@ -39,14 +40,18 @@ h1 {
     text-shadow: 0 0 20px rgba(198, 63, 62, 0.2);
 }
 
-header{
+h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: linear-gradient(135deg, var(--background) 0%, rgba(29, 29, 27, 0.95) 100%);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid rgba(198, 63, 62, 0.2);
-
 }
 
 .search-form {
@@ -67,20 +72,16 @@ header{
     width: 300px;
 }
 
-.search-form #search:focus{
+.search-form #search:focus {
     border-color: var(--title-color);
-    box-shadow: 0 0 15px --btn-clic(198, 63, 62, 0.3);
+    box-shadow: 0 0 15px rgba(198, 63, 62, 0.3);
 }
 
-.search-btn{
+button {
     color: var(--background);
-    padding: 12px 25px;
-    border-radius: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.search-btn:hover{
+button:hover {
     box-shadow: 0 5px 15px rgba(234, 193, 25, 0.4);
 }
 
@@ -90,7 +91,6 @@ header{
     justify-content: space-between;
     padding-top: 10px;
     padding-inline: 50px;
-
 }
 
 .header-container h1 {
@@ -99,9 +99,7 @@ header{
 
 .header-container .search-form {
     font-size: 25px;
-    letter-spacing: 10px;
     border-radius: 5px;
-
 }
 
 .movies {
@@ -124,13 +122,11 @@ header{
 }
 
 .movie-card img {
-
     width: 100%;
     height: auto;
     display: block;
     border-radius: 12px;
     transition: transform 0.3s ease;
-
 }
 
 .movie-card img:hover {
@@ -148,6 +144,107 @@ header{
     font-family: 'Oswald', sans-serif;
 }
 
+/* Estilos para página de detalles */
+.movie-details-section {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.loading-text {
+    text-align: center;
+    font-size: 24px;
+    color: var(--title-color);
+    padding: 50px 0;
+}
+
+.movie-hero {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-poster img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.movie-title {
+    font-size: 48px;
+    color: var(--title-color);
+    margin: 0;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.movie-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meta-label {
+    color: var(--btn-background);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.rating {
+    color: var(--btn-background);
+    font-size: 18px;
+}
+
+.release-date,
+.genres {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+}
+
+.overview {
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.overview h3 {
+    color: var(--title-color);
+    font-size: 24px;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.overview p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/*Diseño responsive*/
+
 @media (max-width: 768px) {
     .header-container {
         flex-direction: column;
@@ -162,5 +259,16 @@ header{
     
     .search-form #search {
         width: 250px;
+    }
+    
+    .movie-hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .movie-title {
+        font-size: 36px;
+        letter-spacing: 3px;
     }
 }
